@@ -10,7 +10,7 @@ function mt:update(dt)
 end
 
 function mt:draw()
-  love.graphics.print('Victory!\npress [enter] or [start] to restart', 100, 100)
+  love.graphics.print({{0,0,0,1}, 'Victory! Press [enter] or [start] to restart.\n\nThanks for playing Disc Room Escape!'}, 100, 100)
 end
 
 function mt:trigger()
