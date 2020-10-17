@@ -23,6 +23,8 @@ end
 
 function mt:trigger(event, actor, data)
     if event == 'hero:kill' then
+        local discSound = love.audio.newSource(SOUND_DISC, "static")
+        discSound:play()
         local deadSound = love.audio.newSource(SOUND_DEATH, "static")
         deadSound:play()
         local hero = data
