@@ -5,7 +5,7 @@ mt.__index = mt
 
 function mt:update(dt)
   if love.keyboard.isDown('return') or (Joystick and Joystick:isGamepadDown('start')) then
-    GameState.setCurrent('Play', 1)
+    GameState.setCurrent('Play', GAME_LEVEL_START)
   end
 end
 

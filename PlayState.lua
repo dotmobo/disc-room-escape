@@ -2,8 +2,6 @@ local GameState = require('GameState')
 local Level = require('Level')
 local World = require('World')
 
-local MAX_LEVEL = 2
-
 local mt = {}
 mt.__index = mt
 
@@ -19,7 +17,7 @@ function mt:draw()
     for _, item in ipairs(self.world.items) do
         item:draw()
     end
-    love.graphics.print({{0,0,0,0.5}, 'ROOM ' .. self.level_num .. '/' .. MAX_LEVEL}, 16, 16)
+    love.graphics.print({{0,0,0,0.5}, 'ROOM ' .. self.level_num .. '/' .. GAME_LEVEL_MAX}, 16, 16)
 end
 
 function mt:trigger(event, actor, data)
@@ -36,7 +34,7 @@ function mt:trigger(event, actor, data)
     elseif event == 'door:open' then
         local doorSound = love.audio.newSource(SOUND_DOOR, "static")
         doorSound:play()
-        if self.level_num < MAX_LEVEL then
+        if self.level_num < GAME_LEVEL_MAX then
           GameState.setCurrent('Play', self.level_num + 1)
         else
           GameState.setCurrent('Win')
@@ -48,7 +46,7 @@ return {
     new = function(level_num)
       local state = setmetatable({ name = 'play_state' }, mt)
       state.world = World.new()
-      state.level = Level.new('map' .. level_num, state)
+      state.level = Level.new('maps/map' .. level_num, state)
       state.level_num = level_num
       return state
     end
