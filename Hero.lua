@@ -5,6 +5,8 @@ local Animation = require('Animation')
 local mt = {}
 mt.__index = mt
 
+
+
 function mt:update(dt)
     -- desactivation du joueur
     if self.is_dead then return end
@@ -16,6 +18,8 @@ function mt:update(dt)
     if (love.keyboard.isDown('up') or (Joystick and (Joystick:isGamepadDown('a')))) and self:canJump() then
         self.vy = HERO_JUMP_SPEED
         self.is_jumping = true
+        local jumpSound = love.audio.newSource(SOUND_JUMP, "static")
+        jumpSound:play()
       end
     if love.keyboard.isDown('left') or (Joystick and (Joystick:isGamepadDown('dpleft') or Joystick:getGamepadAxis('leftx') <= -0.25)) then
         self:setAnim('run')

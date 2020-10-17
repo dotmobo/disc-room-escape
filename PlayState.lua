@@ -23,12 +23,16 @@ end
 
 function mt:trigger(event, actor, data)
     if event == 'hero:kill' then
+        local deadSound = love.audio.newSource(SOUND_DEATH, "static")
+        deadSound:play()
         local hero = data
         if not(hero.is_dead) then
             hero.is_dead = true
             GameState.setCurrent('Dead')
         end
     elseif event == 'door:open' then
+        local doorSound = love.audio.newSource(SOUND_DOOR, "static")
+        doorSound:play()
         if self.level_num < MAX_LEVEL then
           GameState.setCurrent('Play', self.level_num + 1)
         else
