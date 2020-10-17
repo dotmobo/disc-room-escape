@@ -1,6 +1,9 @@
 local GameState = require('GameState')
+Joystick = nil
 
 function love.load()
+    local joysticks = love.joystick.getJoysticks()
+	Joystick = joysticks[1]
     love.graphics.setDefaultFilter("nearest", "nearest")
     GameState.setCurrent('Play', 1)
 end

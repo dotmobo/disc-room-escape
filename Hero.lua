@@ -13,18 +13,18 @@ function mt:update(dt)
 
     self:setAnim('idle')
 
-    if love.keyboard.isDown('up') and self:canJump() then
+    if (love.keyboard.isDown('up') or (Joystick and (Joystick:isGamepadDown('a')))) and self:canJump() then
         self.vy = HERO_JUMP_SPEED
         self.is_jumping = true
       end
-    if love.keyboard.isDown('left') then
+    if love.keyboard.isDown('left') or (Joystick and (Joystick:isGamepadDown('dpleft') or Joystick:getGamepadAxis('leftx') <= -0.25)) then
         self:setAnim('run')
         self.last_direction = -1
         -- acceleration system
         self.vx = self.vx + (-self.speed * self.acceleration * dt)
         if self.vx < -self.speed then self.vx = -self.speed end
         -- dx = dx - dt * self.speed
-    elseif love.keyboard.isDown('right') then
+    elseif love.keyboard.isDown('right') or (Joystick and (Joystick:isGamepadDown('dpright') or Joystick:getGamepadAxis('leftx') >= 0.25)) then
         self:setAnim('run')
         self.last_direction = 1
         -- acceleration system
