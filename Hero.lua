@@ -70,9 +70,9 @@ end
 function mt:draw()
     if self.last_direction == -1 then
         -- 3 last args here are: rotation, scale_x, scale_y
-        assets.qdraw(self.current_anim:getFrame(), self.x + 16 - 3, self.y, 0, -1, 1)
+        assets.qdraw(self.current_anim:getFrame(), self.x + 16 - 3, self.y + 1, 0, -1, 1)
     else
-        assets.qdraw(self.current_anim:getFrame(), self.x + 3, self.y)
+        assets.qdraw(self.current_anim:getFrame(), self.x + 3, self.y + 1)
     end
 end
 
