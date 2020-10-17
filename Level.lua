@@ -4,6 +4,7 @@ local TILES_TYPES = {
     [2] = require('Floor'),
     [4] = require('Door'),
     [5] = require('Disc'),
+    [8] = require('Enemy')
 }
 
 local mt = {}

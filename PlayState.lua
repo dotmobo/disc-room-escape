@@ -19,6 +19,7 @@ function mt:draw()
     for _, item in ipairs(self.world.items) do
         item:draw()
     end
+    love.graphics.print({{0,0,0,0.5}, 'ROOM ' .. self.level_num .. '/' .. MAX_LEVEL}, 16, 16)
 end
 
 function mt:trigger(event, actor, data)
