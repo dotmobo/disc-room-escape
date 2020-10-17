@@ -1,5 +1,5 @@
 -- debug
-DEBUG_ENABLE = true
+DEBUG_ENABLE = false
 -- windows
 WIN_WIDTH = 1200
 WIN_HEIGHT = 864

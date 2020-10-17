@@ -1,0 +1,1 @@
+cat /c/Program\ Files/LOVE/love.exe dist/disc-room-escape.love > dist/disc-room-escape.exe
