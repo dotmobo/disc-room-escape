@@ -1,7 +1,7 @@
 local GameState = {}
 
-function GameState.setCurrent(state_name)
-  GameState.next_current = require(state_name .. 'State').new()
+function GameState.setCurrent(state_name, args)
+  GameState.next_current = require(state_name .. 'State').new(args)
   if not GameState.current then
     GameState.update()
   end

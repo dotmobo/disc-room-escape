@@ -2,6 +2,7 @@ local TILES_TYPES = {
     [9] = require('Hero'),
     [1] = require('Wall'),
     [2] = require('Floor'),
+    [4] = require('Door'),
     [5] = require('Disc'),
 }
 

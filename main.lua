@@ -2,7 +2,7 @@ local GameState = require('GameState')
 
 function love.load()
     love.graphics.setDefaultFilter("nearest", "nearest")
-    GameState.setCurrent('Play')
+    GameState.setCurrent('Play', 1)
 end
 
 function love.update(dt)

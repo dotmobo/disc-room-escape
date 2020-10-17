@@ -10,15 +10,14 @@ function mt:update(dt)
 end
 
 function mt:draw()
-  love.graphics.print('Defeat!\npress [enter] to restart', 100, 100)
+  love.graphics.print('Victory!\npress [enter] to restart', 100, 100)
 end
 
--- ignores events:
 function mt:trigger()
 end
 
 return {
   new = function()
-    return setmetatable({ name = 'dead_state' }, mt)
+    return setmetatable({ name = 'win_state' }, mt)
   end
 }

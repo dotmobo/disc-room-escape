@@ -2,6 +2,8 @@ local GameState = require('GameState')
 local Level = require('Level')
 local World = require('World')
 
+local MAX_LEVEL = 2
+
 local mt = {}
 mt.__index = mt
 
@@ -26,15 +28,21 @@ function mt:trigger(event, actor, data)
             hero.is_dead = true
             GameState.setCurrent('Dead')
         end
+    elseif event == 'door:open' then
+        if self.level_num < MAX_LEVEL then
+          GameState.setCurrent('Play', self.level_num + 1)
+        else
+          GameState.setCurrent('Win')
+        end
     end
 end
 
 return {
-    new = function()
+    new = function(level_num)
       local state = setmetatable({ name = 'play_state' }, mt)
       state.world = World.new()
-      state.level = Level.new('map1', state)
-
+      state.level = Level.new('map' .. level_num, state)
+      state.level_num = level_num
       return state
     end
   }
