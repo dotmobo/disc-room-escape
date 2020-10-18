@@ -16,7 +16,8 @@ end
 
 function mt:onTouch(other)
     if other.is_hero then
-        GameState.getCurrent():trigger('hero:kill', self, other)
+      self:setAnim('bloody')
+      GameState.getCurrent():trigger('hero:kill', self, other)
     end
 end
 
@@ -34,6 +35,7 @@ return {
       h = GAME_SPRITE_SIZE,
       anims = {
         idle = Animation.new(15, 2, 0.2),
+        bloody = Animation.new(17, 2, 0.2),
       },
     }, mt)
     d:setAnim('idle')

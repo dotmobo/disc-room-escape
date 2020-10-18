@@ -8,8 +8,11 @@ mt.__index = mt
 
 
 function mt:update(dt)
-    -- desactivation du joueur
-    if self.is_dead then return end
+    -- go to spawn when player dying
+    if self.is_dead then
+        GameState.getCurrent().world:move(self, self.ox, self.oy, 'is_solid')
+        self.is_dead = false
+    end
 
     local dx, dy = 0, 0
 
@@ -93,6 +96,7 @@ return {
     new = function(x, y)
         local h = setmetatable({
             is_hero = true,
+            ox = x, oy = y,
             x = x, y = y,
             w = GAME_SPRITE_SIZE - 4, h = GAME_SPRITE_SIZE,
             vy = 0,

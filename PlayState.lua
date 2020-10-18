@@ -29,7 +29,7 @@ function mt:trigger(event, actor, data)
         local hero = data
         if not(hero.is_dead) then
             hero.is_dead = true
-            GameState.setCurrent('Dead')
+            -- GameState.setCurrent('Dead')
         end
     elseif event == 'door:open' then
         local doorSound = love.audio.newSource(SOUND_DOOR, "static")

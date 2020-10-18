@@ -8,14 +8,14 @@ mt.__index = mt
 
 function mt:draw()
   if self.dir == -1 then
-    assets.qdraw(self.anim:getFrame(), self.x + 16, self.y, 0, -1, 1)
+    assets.qdraw(self.current_anim:getFrame(), self.x + 16, self.y, 0, -1, 1)
   else
-    assets.qdraw(self.anim:getFrame(), self.x, self.y)
+    assets.qdraw(self.current_anim:getFrame(), self.x, self.y)
   end
 end
 
 function mt:update(dt)
-  self.anim:update(dt)
+  self.current_anim:update(dt)
 
   GameState.getCurrent().world:move(self, self.x+self.dir*self.speed*dt, self.y, 'is_solid')
 
@@ -44,13 +44,18 @@ end
 
 function mt:onTouch(other)
   if other.is_hero then
+    self:setAnim('bloody')
     GameState.getCurrent():trigger('hero:kill', self, other)
   end
 end
 
+function mt:setAnim(name)
+  self.current_anim = self.anims[name]
+end
+
 return {
   new = function(x, y)
-    return setmetatable({
+    local d = setmetatable({
       is_touchable = true,
       x = x,
       y = y,
@@ -58,7 +63,12 @@ return {
       h = GAME_SPRITE_SIZE,
       dir = 1,
       speed = 60,
-      anim = Animation.new(15, 2, 0.2)
+      anims = {
+        idle = Animation.new(15, 2, 0.2),
+        bloody = Animation.new(17, 2, 0.2),
+      },
     }, mt)
+    d:setAnim('idle')
+    return d
   end
 }
