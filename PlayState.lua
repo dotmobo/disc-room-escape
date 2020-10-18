@@ -15,7 +15,7 @@ function mt:update(dt)
     if self.timer <= 0 then
         GameState.setCurrent('Dead')
     end
-    if math.floor(self.timer) == 5 and self.alert == false then
+    if math.floor(self.timer) == GAME_LEVEL_TIMER_ALERT and self.alert == false then
         self.alert = true
         local alertSound = love.audio.newSource(SOUND_ALERT, "static")
         alertSound:play()
@@ -69,7 +69,7 @@ return {
       state.world = World.new()
       state.level = Level.new('maps/map' .. level_num, state)
       state.level_num = level_num
-      state.timer = 20 -- 20 secondes
+      state.timer = GAME_LEVEL_TIMER_MAX -- 20 secondes
       state.alert = false
       return state
     end
