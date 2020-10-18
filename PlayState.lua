@@ -15,6 +15,11 @@ function mt:update(dt)
     if self.timer <= 0 then
         GameState.setCurrent('Dead')
     end
+    if math.floor(self.timer) == 5 and self.alert == false then
+        self.alert = true
+        local alertSound = love.audio.newSource(SOUND_ALERT, "static")
+        alertSound:play()
+    end
     self.timer = self.timer - dt
 end
 
@@ -22,6 +27,16 @@ function mt:draw()
     for _, item in ipairs(self.world.items) do
         item:draw()
     end
+
+    if self.alert == true then
+        love.graphics.setColor(208, 0, 0, 1)
+        love.graphics.setBackgroundColor( 200/255, 50/255, 50/255 )
+    else
+        love.graphics.setColor(1, 1, 1, 1)
+        love.graphics.setBackgroundColor( 104/255, 124/255, 133/255 )
+    end
+
+
     love.graphics.setNewFont(10)
     love.graphics.print({{0,0,0,0.7}, 'ROOM ' .. self.level_num .. '/' .. GAME_LEVEL_MAX .. ' - TIME LEFT ' .. math.floor(self.timer) ..'s'}, 16, 16)
 end
@@ -55,6 +70,7 @@ return {
       state.level = Level.new('maps/map' .. level_num, state)
       state.level_num = level_num
       state.timer = 20 -- 20 secondes
+      state.alert = false
       return state
     end
   }
