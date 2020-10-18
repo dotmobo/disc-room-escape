@@ -2,7 +2,7 @@
 DEBUG_ENABLE = false
 -- windows
 WIN_WIDTH = 1200
-WIN_HEIGHT = 864
+WIN_HEIGHT = 768
 -- game
 GAME_TITLE = "Disc Room Escape"
 GAME_SCALE = 3
