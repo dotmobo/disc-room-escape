@@ -9,6 +9,10 @@ function mt:getFrame()
   return self.start + math.floor(self.len * (self.t % self.duration) / self.duration)
 end
 
+function mt:getLastFrameNumber()
+  return self.start + self.len - 1
+end
+
 return {
   new = function(start, len, duration)
     return setmetatable({

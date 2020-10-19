@@ -18,12 +18,21 @@ function mt:update(dt)
 
     self:setAnim('idle')
 
-    if (love.keyboard.isDown('up') or (Joystick and (Joystick:isGamepadDown('a')))) and self:canJump() then
-        self.vy = HERO_JUMP_SPEED
-        self.is_jumping = true
-        local jumpSound = love.audio.newSource(SOUND_JUMP, "static")
-        jumpSound:play()
-      end
+    if (love.keyboard.isDown('up') or (Joystick and (Joystick:isGamepadDown('a')))) then
+        -- init jump
+        if self:canJump() then
+            self.vy = HERO_JUMP_SPEED
+            self.is_jumping = true
+            local jumpSound = love.audio.newSource(SOUND_JUMP, "static")
+            jumpSound:play()
+        -- during the jump
+        elseif self.is_jumping == true then
+            -- reduce the gravity for smooth jump
+            if self.vy < 0 then
+                self.vy = self.vy - HERO_JUMP_GRAVITY * dt
+            end
+        end
+    end
     if love.keyboard.isDown('left') or (Joystick and (Joystick:isGamepadDown('dpleft') or Joystick:getGamepadAxis('leftx') <= -0.25)) then
         self:setAnim('run')
         self.last_direction = -1
