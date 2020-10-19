@@ -10,7 +10,11 @@ function mt:update(dt)
 end
 
 function mt:draw()
-  love.graphics.print({{0,0,0,1}, 'Defeat! Press [enter] or [start] to restart.\n\nThanks for playing Disc Room Escape!'}, 100, 100)
+  love.graphics.setNewFont(12)
+  love.graphics.setColor(1, 1, 1, 1)
+  love.graphics.setBackgroundColor( 104/255, 124/255, 133/255 )
+  love.graphics.draw(self.img, 70, 0, 0, 0.4, 0.4)
+  love.graphics.print({{0,0,0,1}, 'Defeat! Press [enter] or [start] to restart.\nThanks for playing Disc Room Escape!'}, 75, 220)
 end
 
 -- ignores events:
@@ -19,6 +23,6 @@ end
 
 return {
   new = function()
-    return setmetatable({ name = 'dead_state' }, mt)
+    return setmetatable({ name = 'dead_state', img = love.graphics.newImage("assets/cover.png")}, mt)
   end
 }

@@ -5,7 +5,7 @@ function love.load()
     local joysticks = love.joystick.getJoysticks()
 	Joystick = joysticks[1]
     love.graphics.setDefaultFilter("nearest", "nearest")
-    GameState.setCurrent('Play', GAME_LEVEL_START)
+    GameState.setCurrent('Start')
 end
 
 function love.update(dt)

@@ -14,14 +14,15 @@ function mt:draw()
   love.graphics.setColor(1, 1, 1, 1)
   love.graphics.setBackgroundColor( 104/255, 124/255, 133/255 )
   love.graphics.draw(self.img, 70, 0, 0, 0.4, 0.4)
-  love.graphics.print({{0,0,0,1}, 'Victory! Press [enter] or [start] to restart.\nThanks for playing Disc Room Escape!'}, 75, 220)
+  love.graphics.print({{0,0,0,1}, 'Press [enter] or [start] to start the game !'}, 75, 220)
 end
 
+-- ignores events:
 function mt:trigger()
 end
 
 return {
   new = function()
-    return setmetatable({ name = 'win_state', img = love.graphics.newImage("assets/cover.png") }, mt)
+    return setmetatable({ name = 'start_state',  img = love.graphics.newImage("assets/cover.png") }, mt)
   end
 }
