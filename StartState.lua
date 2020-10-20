@@ -6,6 +6,8 @@ mt.__index = mt
 function mt:update(dt)
   if love.keyboard.isDown('return') or (Joystick and Joystick:isGamepadDown('start')) then
     GameState.setCurrent('Play', GAME_LEVEL_START)
+    local doorSound = love.audio.newSource(SOUND_DOOR, "static")
+    doorSound:play()
   end
 end
 
