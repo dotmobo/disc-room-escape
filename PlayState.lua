@@ -33,6 +33,8 @@ function mt:update(dt)
 end
 
 function mt:draw()
+    -- background
+    love.graphics.draw(self.back, 0, 0, 0, 1/3, 1/3)
     -- show items
     for _, item in ipairs(self.world.items) do
         item:draw()
@@ -88,7 +90,7 @@ end
 
 return {
     new = function(level_num)
-      local state = setmetatable({ name = 'play_state' }, mt)
+      local state = setmetatable({ name = 'play_state', back = love.graphics.newImage("assets/background.png") }, mt)
       state.world = World.new()
       state.level = Level.new('maps/map' .. level_num, state)
       state.level_num = level_num
