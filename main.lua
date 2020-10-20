@@ -6,6 +6,11 @@ function love.load()
 	Joystick = joysticks[1]
     love.graphics.setDefaultFilter("nearest", "nearest")
     GameState.setCurrent('Start')
+    -- music
+	local music = love.audio.newSource(GAME_MUSIC_PATH, "static")
+	music:setVolume(GAME_MUSIC_VOLUME)
+    music:setLooping(true)
+    music:play()
 end
 
 function love.update(dt)
