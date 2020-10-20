@@ -37,6 +37,12 @@ function mt:draw()
     for _, item in ipairs(self.world.items) do
         item:draw()
     end
+    -- show timer and room
+    love.graphics.setNewFont(9)
+    love.graphics.setColor(5/255,14/255,11/255) -- set uid color
+    love.graphics.rectangle("fill", 2, 2, 124, 12 )
+    love.graphics.setColor(1, 1, 1, 1) -- reset color
+    love.graphics.print({{168,168,168,1}, 'ROOM ' .. self.level_num .. '/' .. GAME_LEVEL_MAX .. ' - TIME LEFT ' .. math.floor(self.timer) ..'s'}, 2, 2)
     -- show alert screen
     if self.alert == true then
         love.graphics.setColor(208, 0, 0, 1)
@@ -49,9 +55,6 @@ function mt:draw()
     if self.explosion.explode == true then
         assets.qdraw(self.explosion.anim:getFrame(), self.explosion.x, self.explosion.y)
     end
-    -- show timer and room
-    love.graphics.setNewFont(10)
-    love.graphics.print({{0,0,0,0.7}, 'ROOM ' .. self.level_num .. '/' .. GAME_LEVEL_MAX .. ' - TIME LEFT ' .. math.floor(self.timer) ..'s'}, 16, 16)
 end
 
 function mt:trigger(event, actor, data)
