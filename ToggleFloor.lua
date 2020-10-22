@@ -5,8 +5,6 @@ mt.__index = mt
 
 function mt:update(dt)
   self.toggleCount = self.toggleCount + dt
-
-  print(self.toggleCount )
   if self.toggleCount >= self.toggleDelay then
     self.toggleCount = 0
     self.is_solid = not self.is_solid
@@ -27,10 +25,10 @@ return {
   new = function(x, y)
     return setmetatable({
       is_toggle_floor = true,
-      is_solid = false,
+      is_solid = true,
       x = x,
       y = y,
-      toggleDelay = 2,
+      toggleDelay = 3,
       toggleCount = 0,
       w = GAME_SPRITE_SIZE,
       h = GAME_SPRITE_SIZE
