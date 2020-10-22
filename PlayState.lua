@@ -3,6 +3,7 @@ local Level = require('Level')
 local World = require('World')
 local assets = require('assets')
 local Animation = require('Animation')
+local Particles = require('Particles')
 
 local mt = {}
 mt.__index = mt
@@ -19,6 +20,10 @@ function mt:update(dt)
         if self.explosion.anim:getFrame() == self.explosion.anim:getLastFrameNumber() then
             self.explosion.explode = false
         end
+    end
+    -- blood particles
+    if self.explosion.particles then
+        self.explosion.particles:update(dt)
     end
     -- Game lost if timer 0
     if self.timer <= 0 then
@@ -57,6 +62,10 @@ function mt:draw()
     if self.explosion.explode == true then
         assets.qdraw(self.explosion.anim:getFrame(), self.explosion.x, self.explosion.y)
     end
+    -- blood particles
+    if self.explosion.particles then
+        self.explosion.particles:draw()
+    end
 end
 
 function mt:trigger(event, actor, data)
@@ -72,7 +81,8 @@ function mt:trigger(event, actor, data)
             explode = true,
             x = hero.x,
             y = hero.y,
-            anim = Animation.new(19, 4, 0.5)
+            anim = Animation.new(19, 4, 0.5),
+            particles = Particles.new(self.bloodImg, 128, hero.x + GAME_SPRITE_SIZE/2, hero.y + GAME_SPRITE_SIZE/2)
         }
         if not(hero.is_dead) then
             hero.is_dead = true
@@ -96,11 +106,13 @@ return {
       state.level_num = level_num
       state.timer = GAME_LEVEL_TIMER_MAX -- 20 secondes
       state.alert = false
+      state.bloodImg = love.graphics.newImage("/assets/blood.png")
       state.explosion = {
           explode = false,
           x = 0,
           y = 0,
-          anim = nil
+          anim = nil,
+          particles = nil,
       }
       return state
     end
