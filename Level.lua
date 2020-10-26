@@ -1,11 +1,12 @@
 local TILES_TYPES = {
-    [9] = require('Hero'),
     [1] = require('Wall'),
     [2] = require('Floor'),
     [3] = require('ToggleFloor'),
     [4] = require('Door'),
     [5] = require('Disc'),
-    [8] = require('Enemy')
+    [7] = require('Boss'),
+    [8] = require('Enemy'),
+    [9] = require('Hero'),
 }
 
 local mt = {}
