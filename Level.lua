@@ -8,6 +8,7 @@ local TILES_TYPES = {
     [7] = require('Boss'),
     [8] = require('Enemy'),
     [9] = require('Hero'),
+    [10] = require('Scaffold'),
 }
 
 local mt = {}
