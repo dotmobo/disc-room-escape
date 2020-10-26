@@ -4,6 +4,7 @@ local TILES_TYPES = {
     [3] = require('ToggleFloor'),
     [4] = require('Door'),
     [5] = require('Disc'),
+    [6] = require('Roof'),
     [7] = require('Boss'),
     [8] = require('Enemy'),
     [9] = require('Hero'),
