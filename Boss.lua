@@ -64,8 +64,8 @@ return {
       dir = 1,
       speed = 200,
       anims = {
-        idle = Animation.new(25, 2, 0.2),
-        bloody = Animation.new(27, 2, 0.2),
+        idle = Animation.new(31, 2, 0.2),
+        bloody = Animation.new(33, 2, 0.2),
       },
     }, mt)
     d:setAnim('idle')
